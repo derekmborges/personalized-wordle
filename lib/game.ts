@@ -1,4 +1,3 @@
-import { TODAYS_WORDLE } from "./words";
 
 export interface GuessResult {
     correctLetters?: number[] // indices
@@ -23,10 +22,8 @@ export class WordleGame {
     currentTurn: number;
     result: boolean | null;
 
-    constructor() {
-        // var randomWord = require('random-word-by-length');
-        // this.word = randomWord(WORD_LENGTH)
-        this.word = TODAYS_WORDLE.toUpperCase()
+    constructor(word: string) {
+        this.word = word
         this.turns = []
         for (let i=0; i<MAX_TURNS; i++) {
             this.turns.push(null);

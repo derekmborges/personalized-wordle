@@ -4,9 +4,13 @@ import GameResultModal from './GameResultModal'
 import Keyboard from './Keyboard'
 import { LetterTile } from './LetterTile'
 
-export default function GameBoard() {
+type Props = {
+    customWord: string
+}
+
+export default function GameBoard({ customWord }: Props) {
     // const [game] = useState(WordleGame.load())
-    const [game] = useState(new WordleGame())
+    const [game] = useState(new WordleGame(customWord))
     const [currentWord, setCurrentWord] = useState('')
 
     const enterLetter = (letter: string) => {
