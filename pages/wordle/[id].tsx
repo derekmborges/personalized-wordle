@@ -24,7 +24,8 @@ const PersonalizedWordle: React.FC<WordleProps> = props => {
 }
 
 export const getServerSideProps: GetServerSideProps = async (context: GetServerSidePropsContext) => {
-    const res = await fetch(`http://localhost:3000/api/wordle/${context.params?.id}`)
+    const baseUrl = process.env.BASE_URL
+    const res = await fetch(`${baseUrl}/api/wordle/${context.params?.id}`)
     const data = await res.json()
     return { props: { ...data } }
 }
