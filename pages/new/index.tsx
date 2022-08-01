@@ -12,7 +12,7 @@ const NewWordleForm: NextPage = () => {
 
     const [processing, setProcessing] = useState(false)
     const [customURL, setCustomURL] = useState('')
-    const baseUrl = `${process.env.BASE_URL}/wordle`
+    // const baseUrl = `${process.env.BASE_URL}/wordle`
 
     const onWordChanged = (e: { target: { value: string } }) => {
         const word: string = e.target.value
@@ -43,7 +43,7 @@ const NewWordleForm: NextPage = () => {
             })
             const createdWordle = await response.json()
 
-            setCustomURL(`${baseUrl}/${createdWordle.id}`)
+            setCustomURL(`wordle/${createdWordle.id}`)
 
         } catch (error) {
             console.error(error)
