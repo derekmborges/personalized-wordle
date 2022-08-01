@@ -12,7 +12,7 @@ const NewWordleForm: NextPage = () => {
 
     const [processing, setProcessing] = useState(false)
     const [customURL, setCustomURL] = useState('')
-    const baseUrl = 'http://localhost:3000/wordle'
+    const baseUrl = `${process.env.BASE_URL}/wordle`
 
     const onWordChanged = (e: { target: { value: string } }) => {
         const word: string = e.target.value
