@@ -9,6 +9,11 @@ type WordleProps = {
 }
 
 const PersonalizedWordle: React.FC<WordleProps> = props => {
+
+    if (!props.word) {
+        console.error('error loading wordle:', props)
+    }
+
     const creator: string = props.creatorName || 'Anonymous'
     return (
         <div className={styles.App}>
