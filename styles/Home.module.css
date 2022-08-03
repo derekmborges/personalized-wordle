@@ -21,11 +21,20 @@
   align-items: center;
 }
 
-.footer a {
+.footer div {
+  height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+}
+
+.footer div a {
+  height: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .title a {
@@ -73,6 +82,13 @@
   max-width: 800px;
 }
 
+.grid_row {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  justify-content: center;
+}
+
 .card {
   margin: 1rem;
   padding: 1.5rem;
@@ -82,7 +98,7 @@
   border: 1px solid #eaeaea;
   border-radius: 10px;
   transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
+  max-width: 400px;
 }
 
 .card:hover,
@@ -104,8 +120,9 @@
 }
 
 .logo {
-  height: 1em;
+  height: 1.3em;
   margin-left: 0.5rem;
+  vertical-align: middle;
 }
 
 @media (max-width: 600px) {
@@ -122,8 +139,5 @@
   }
   .code {
     background: #111;
-  }
-  .logo img {
-    filter: invert(1);
   }
 }

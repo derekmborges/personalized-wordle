@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { Container, Row, Card, Button, Form, Spinner } from 'react-bootstrap'
+import { Container, Row, Card, Button, Form, Spinner, Collapse } from 'react-bootstrap'
 import styles from '../../styles/NewWordleForm.module.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { useState } from 'react'
@@ -12,7 +12,6 @@ const NewWordleForm: NextPage = () => {
 
     const [processing, setProcessing] = useState(false)
     const [customURL, setCustomURL] = useState('')
-    // const baseUrl = `${process.env.BASE_URL}/wordle`
 
     const onWordChanged = (e: { target: { value: string } }) => {
         const word: string = e.target.value
@@ -49,6 +48,10 @@ const NewWordleForm: NextPage = () => {
             console.error(error)
         }
         setProcessing(false)
+    }
+
+    const copyToClipboard = () => {
+        navigator.clipboard.writeText(customURL)
     }
 
     return (
@@ -113,7 +116,7 @@ const NewWordleForm: NextPage = () => {
                         </Card>
                     </Row>
 
-                    {customURL.length > 0 && (
+                    <Collapse in={customURL.length > 0}>
                         <Row className="mt-3">
                             <Card className="sml-card">
                                 <Card.Body className='text-center'>
@@ -122,10 +125,11 @@ const NewWordleForm: NextPage = () => {
                                         The link to share for this custom wordle is:
                                     </Card.Subtitle>
                                     <Card.Link target="_blank" href={customURL}>{customURL}</Card.Link>
+                                    <Button onClick={copyToClipboard}>Copy to Clipboard</Button>
                                 </Card.Body>
                             </Card>
                         </Row>
-                    )}
+                    </Collapse>
                 </Container>
             </Container>
         </div>

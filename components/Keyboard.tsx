@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { GuessResult, WordleGame } from '../lib/game'
+import React from 'react'
+import { GuessResult } from '../lib/game'
+import styles from '../styles/Keyboard.module.css'
+import cx from 'classnames'
 
 type Props = {
   turns: (string | null)[]
@@ -111,26 +113,26 @@ export default function Keyboard({
   }
 
   const getUsedColor = (key: KeyboardKey) => {
-    if (!key.isLetter) return ''
+    if (!key.isLetter) return null
 
-    return allCorrect.includes(key.label) ? 'green'
-      : allClose.includes(key.label) ? 'yellow'
-      : allWrong.includes(key.label) ? 'grey'
-      : ''
+    return allCorrect.includes(key.label) ? styles.green
+      : allClose.includes(key.label) ? styles.yellow
+      : allWrong.includes(key.label) ? styles.grey
+      : null
   }
 
   return (
-    <div className='keyboard'>
+    <div className={styles.keyboard}>
       {KEYBOARD_KEYS.map((row, i) =>
-        <div key={i} className='row'>
+        <div key={i} className={styles.row}>
           {row.map((key, i) =>
-            <div key={i} className={
-                `key
-                ${key.customAction ? 'action' : ''}
-                ${getUsedColor(key)}`
-              }
+            <div key={i} className={cx(
+                styles.key,
+                key.customAction ? styles.action : null,
+                getUsedColor(key)
+              )}
               onClick={() => keyClicked(key)}>
-              <h3>{key.label}</h3>
+              <p className={styles.keyLabel}>{key.label}</p>
             </div>
           )}
         </div>

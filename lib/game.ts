@@ -81,6 +81,7 @@ export class WordleGame {
     }
 
     isGameOver(): boolean {
+        setTimeout(() => {}, 2000)
         if (this.result != null) return true
 
         if (this.guessResults.length === MAX_TURNS) {

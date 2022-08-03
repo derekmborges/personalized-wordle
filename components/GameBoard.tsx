@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { WordleGame, WORD_LENGTH } from '../lib/game'
+import { WordleProps } from '../pages/wordle/[id]'
 import GameResultModal from './GameResultModal'
 import Keyboard from './Keyboard'
 import { LetterTile } from './LetterTile'
+import styles from '../styles/GameBoard.module.css'
 
-type Props = {
-    customWord: string
-}
-
-export default function GameBoard({ customWord }: Props) {
-    // const [game] = useState(WordleGame.load())
-    const [game] = useState(new WordleGame(customWord))
+export default function GameBoard({ word, creatorName }: WordleProps) {
+    const [game] = useState(new WordleGame(word))
     const [currentWord, setCurrentWord] = useState('')
 
     const enterLetter = (letter: string) => {
@@ -36,7 +33,6 @@ export default function GameBoard({ customWord }: Props) {
     const submitGuess = () => {
         if (currentWord.length === WORD_LENGTH) {
             game.submitWord(currentWord)
-            // game.save()
             clearWord()
         }
     }
@@ -70,15 +66,15 @@ export default function GameBoard({ customWord }: Props) {
     }
 
     return (
-        <div className='game'>
-            <div className='board'>
+        <div className={styles.game}>
+            <div className={styles.board}>
                 {game.turns.map((turn, i) =>
-                    <div key={i} className='word'>
+                    <div key={i} className={styles.word}>
                         {buildWord(turn, i)}
                     </div>
                 )}
             </div>
-            <div className='keyboard'>
+            <div className={styles.keyboard}>
                 <Keyboard
                     turns={game.turns}
                     results={game.guessResults}
@@ -89,12 +85,13 @@ export default function GameBoard({ customWord }: Props) {
                 />
             </div>
 
-            {game.isGameOver() && (
-                <GameResultModal
-                    word={game.word}
-                    won={game.result || false}
-                />
-            )}
+            <GameResultModal
+                show={game.isGameOver()}
+                word={game.word}
+                creator={creatorName || 'Anonymouse'}
+                won={game.result || false}
+                onHide={() => {}}
+            />
         </div>
     )
 }

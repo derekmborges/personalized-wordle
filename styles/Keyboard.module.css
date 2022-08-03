@@ -21,12 +21,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     border: 1px solid #22213c96;
-    color: #938fbc;
+    color: #d1d1d1bc;
     background-color: #28274b;
-    border-radius: 0.25rem;
+    border-radius: 0.3rem;
     margin: 0.25rem;
+    padding-top: 0.2rem;
+}
+
+.keyLabel {
+    margin: 0;
+    font-size: 1.3em;
 }
 
 .keyboard .row .key.action {
@@ -39,10 +44,12 @@
 
 .keyboard .row .key.green {
     background-color: #008a2b;
+    color: #dfdfdf;
 }
 
 .keyboard .row .key.yellow {
     background-color: #c6b200;
+    color: #535353;
 }
 
 .keyboard .row .key.grey {

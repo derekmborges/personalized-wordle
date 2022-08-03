@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "prisma db push && next dev",
     "build": "prisma db push && next build",
     "start": "next start",
     "lint": "next lint"
@@ -11,6 +11,7 @@
   "dependencies": {
     "@prisma/client": "^4.1.1",
     "bootstrap": "^5.2.0",
+    "classnames": "^2.3.1",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-bootstrap": "^2.4.0",
