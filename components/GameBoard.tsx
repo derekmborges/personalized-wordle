@@ -9,6 +9,7 @@ import styles from '../styles/GameBoard.module.css'
 export default function GameBoard({ word, creatorName }: WordleProps) {
     const [game] = useState(new WordleGame(word))
     const [currentWord, setCurrentWord] = useState('')
+    const [showModal, setShowModal] = useState(false)
 
     const enterLetter = (letter: string) => {
         if (currentWord && currentWord.length < WORD_LENGTH) {
@@ -34,6 +35,12 @@ export default function GameBoard({ word, creatorName }: WordleProps) {
         if (currentWord.length === WORD_LENGTH) {
             game.submitWord(currentWord)
             clearWord()
+
+            setTimeout(() => {
+                if (game.isGameOver()) {
+                    setShowModal(true)
+                }
+            }, 3000)
         }
     }
 
@@ -86,11 +93,11 @@ export default function GameBoard({ word, creatorName }: WordleProps) {
             </div>
 
             <GameResultModal
-                show={game.isGameOver()}
+                show={showModal}
                 word={game.word}
                 creator={creatorName || 'Anonymouse'}
                 won={game.result || false}
-                onHide={() => {}}
+                onHide={() => setShowModal(false)}
             />
         </div>
     )
