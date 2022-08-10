@@ -95,7 +95,7 @@ export default function GameBoard({ word, creatorName }: WordleProps) {
             <GameResultModal
                 show={showModal}
                 word={game.word}
-                creator={creatorName || 'Anonymouse'}
+                creator={creatorName || 'Anonymous'}
                 won={game.result || false}
                 onHide={() => setShowModal(false)}
             />
